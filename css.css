@@ -1,0 +1,167 @@
+/* ============ DASHBOARD ============ */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.dash-card {
+  background: linear-gradient(135deg, var(--panel), var(--panel2));
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 14px;
+  text-align: center;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+  position: relative;
+  overflow: hidden;
+}
+.dash-card::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(230,184,74,.12), transparent 65%);
+  opacity: 0; transition: opacity .3s;
+  pointer-events: none;
+}
+.dash-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: 0 10px 28px var(--shadowDeep);
+}
+.dash-card:hover::before { opacity: 1; }
+.dash-icon {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+  filter: drop-shadow(0 2px 6px rgba(230,184,74,.3));
+}
+.dash-card b {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.dash-card span {
+  color: var(--mute);
+  font-size: .78rem;
+}
+
+/* ============ HEATMAP ============ */
+.heatmap-wrap {
+  overflow-x: auto;
+  padding: 16px;
+  border-radius: 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  margin: 20px 0;
+  scrollbar-width: thin;
+}
+.heatmap {
+  display: block;
+  min-width: 760px;
+  direction: ltr;
+}
+.hm-cell {
+  fill: var(--line);
+  transition: fill .2s, transform .15s;
+  transform-origin: center;
+  transform-box: fill-box;
+  cursor: pointer;
+}
+.hm-cell:hover { transform: scale(1.35); }
+.hm-l0 { fill: var(--line); }
+.hm-l1 { fill: rgba(230,184,74,.35); }
+.hm-l2 { fill: rgba(230,184,74,.65); }
+.hm-l3 { fill: var(--gold2); }
+.hm-l4 { fill: var(--gold); }
+.hm-month, .hm-day {
+  font-family: 'Cairo', sans-serif;
+  font-size: 9px;
+  fill: var(--mute);
+}
+.hm-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+  font-size: .72rem;
+  color: var(--mute);
+}
+.hm-legend .hm-cell {
+  width: 11px; height: 11px;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+/* ============ BANNIÈRE MISE À JOUR ============ */
+.update-banner {
+  position: fixed;
+  bottom: 20px; left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #0a1432;
+  padding: 12px 20px;
+  border-radius: 999px;
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 700;
+  box-shadow: 0 12px 32px rgba(0,0,0,.3);
+  z-index: 200;
+  animation: slideUp .4s ease both;
+}
+.update-banner button {
+  background: #0a1432;
+  color: var(--gold2);
+  border: 0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+@keyframes slideUp {
+  from { transform: translate(-50%, 60px); opacity: 0; }
+}
+
+/* ============ SRS — 4 boutons qualité ============ */
+.srs-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+@media(max-width: 520px) {
+  .srs-buttons { grid-template-columns: repeat(2, 1fr); }
+}
+.srs-buttons button {
+  padding: 14px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: .82rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  transition: all .2s;
+}
+.srs-buttons button:hover { transform: translateY(-2px); }
+.srs-buttons button[data-q="0"]:hover { border-color: var(--rose); color: var(--rose); }
+.srs-buttons button[data-q="3"]:hover { border-color: var(--gold); color: var(--gold); }
+.srs-buttons button[data-q="4"]:hover { border-color: var(--teal); color: var(--teal); }
+.srs-buttons button[data-q="5"]:hover { border-color: var(--purple); color: var(--purple); }
+.srs-buttons small { font-size: .68rem; color: var(--mute); font-weight: 500; }
+
+/* ============ INSTALL BUTTON ============ */
+#installBtn {
+  background: linear-gradient(135deg, var(--purple), #4c1d95);
+  color: #fff;
+  border-color: transparent;
+  font-weight: 700;
+}
