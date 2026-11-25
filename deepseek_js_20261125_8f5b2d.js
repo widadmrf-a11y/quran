@@ -1,4 +1,4 @@
-/* srs.js — Répétition espacée SM-2 simplifié */
+
 
 export const QUALITY = { AGAIN: 0, HARD: 3, GOOD: 4, EASY: 5 };
 export const MIN_EASE = 1.3;
